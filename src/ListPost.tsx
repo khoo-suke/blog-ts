@@ -11,7 +11,6 @@ import { Link, Outlet } from 'react-router-dom';
 }
 
 
-
 function ListPost():any {
   const [posts, setPosts] = useState<PostProps[]>([]);
 
@@ -26,8 +25,8 @@ function ListPost():any {
   }, []);
 
   return (
-    posts.map(elem => (
-      <>
+    <>
+      {posts.map(elem => (
         <div className="home_container" key={elem.id}>
           <ul>
             <li>
@@ -50,9 +49,10 @@ function ListPost():any {
             </li>
           </ul>
         </div>
-        <Outlet/>
-      </>
-  )));
+      ))};
+      <Outlet />
+    </>
+  );
 }
 
 export default ListPost;
