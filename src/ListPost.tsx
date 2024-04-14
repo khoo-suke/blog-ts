@@ -10,7 +10,6 @@ import { Link, Outlet } from 'react-router-dom';
   content: string,
 }
 
-
 function ListPost():any {
   const [posts, setPosts] = useState<PostProps[]>([]);
 
