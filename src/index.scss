@@ -20,11 +20,3 @@ code {
   margin: 4rem auto;
   width: min(92%, 800px);
 }
-
-.mb-30 {
-  margin-bottom: clamp(1.5rem, 2vw, 3rem);
-}
-
-.mb-60 {
-  margin-bottom: clamp(3rem, 4vw, 6rem);
-}

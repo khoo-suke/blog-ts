@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
 import './ListPost.scss';
 import { Link, Outlet } from 'react-router-dom';
-
- type Post = {
-  id: number,
-  createdAt: string,
-  categories: string[],
-  title: string,
-  content: string,
-}
+import { Post } from './types/Post';
 
 function ListPost():any {
   const [posts, setPosts] = useState<Post[]>([]);

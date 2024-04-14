@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './PostDitail.scss';
 import { useParams } from 'react-router-dom';
-
-type PostPage = {
-  thumbnailUrl: string,
-  categories: string[],
-  title: string,
-  createdAt: string,
-  content: string,
-}
+import './PostDitail.scss';
+import { Post } from './types/Post';
 
 function PostDitail():any {
   const { postId } = useParams();
-  const [post, setPost] = useState<PostPage>();
+  const [post, setPost] = useState<Post| null>(null);
 
   useEffect(() => {
     const fetcher = async () => {
@@ -23,9 +16,10 @@ function PostDitail():any {
     fetcher();
   }, [postId]);
 
+  if (!post) return null;
+  
   return (
     <>
-      {post && (
       <div className="container">
         <img src={post.thumbnailUrl} alt={post.title} />
         <div className="info">
@@ -41,7 +35,6 @@ function PostDitail():any {
         <h2>{post.title}</h2>
         <div dangerouslySetInnerHTML={{ __html: `${post.content}` }} />
       </div>
-      )};
     </>
   );
 }
