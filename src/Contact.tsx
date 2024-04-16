@@ -41,8 +41,10 @@ const Contact: React.FC = () => {
         body: JSON.stringify(data)
       });
       return await response.json();
-    } catch (error:any) {
-      throw new Error(error.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(error.message)
+      }
     }
   }
 
