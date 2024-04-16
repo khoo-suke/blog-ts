@@ -3,7 +3,7 @@ import './ListPost.scss';
 import { Link, Outlet } from 'react-router-dom';
 import { Post } from './types/Post';
 
-function ListPost():any {
+const ListPost:React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {

@@ -1,28 +1,29 @@
 import React from "react";
 import './Contact.scss';
 import { useForm } from "react-hook-form";
-import { ReturnValues } from './types/ReturnValues';
+import { ContactForm } from './types/ContactForm';
 
-export default function Contact():any {
-  const defaultValues:ReturnValues = {
+const Contact: React.FC = () => {
+  const defaultValues: ContactForm = {
     name: '',
     email: '',
     message: ''
   }
 
-  const { register, handleSubmit, reset, formState: { isSubmitting, errors } } = useForm<ReturnValues>({ defaultValues });
+  const { register, handleSubmit, reset, formState: { isSubmitting, errors } } = useForm<ContactForm>({ defaultValues });
 
   const handleClear = () => {
     reset();
   };
 
-  const onsubmit = async (data: ReturnValues) => {
-    if (validateData(data)) {
+  const onsubmit = async (data: ContactForm) => {
+    if (data) {
       try {
         const response = await sendDataToAPI(data);
         console.log(response);
         handleClear();
-      } catch (error: any) {
+        alert("送信しました");
+      } catch (error) {
         console.error(error);
       }
     } else {
@@ -30,13 +31,8 @@ export default function Contact():any {
     }
   };
 
-  function validateData(data: ReturnValues) {
-    return true;
-  }
-
-  async function sendDataToAPI(data: ReturnValues) {
+  async function sendDataToAPI(data: ContactForm) {
     try {
-      alert("送信しました");
       const response = await fetch('https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/contacts', {
         method: 'POST',
         headers: {
@@ -45,7 +41,7 @@ export default function Contact():any {
         body: JSON.stringify(data)
       });
       return await response.json();
-    } catch (error: any) {
+    } catch (error:any) {
       throw new Error(error.message);
     }
   }
@@ -105,3 +101,5 @@ export default function Contact():any {
     </div>
   );
 };
+
+export default Contact;

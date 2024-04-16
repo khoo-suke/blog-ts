@@ -1,20 +1,23 @@
 import './App.scss';
-import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import ListPost from './ListPost';
-import PostDitail from './PostDitail';
+import PostDetail from './PostDetail';
 import Header from './Header';
 import Contact from './Contact';
 
-const App = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<Header />} >
-      <Route path="/" element={<ListPost />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="post/:postId" element={<PostDitail/>} />
-    </Route>
+const App:React.FC = () => {
+  return (
+    <div>
+      <Header />
+      <Routes>
+        <Route path="/" element={<ListPost />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="post/:postId" element={<PostDetail />} />
+      </Routes>
+    </div>
   )
-);
+};
 
 export default App;
 

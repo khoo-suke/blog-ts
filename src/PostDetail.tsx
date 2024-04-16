@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import './PostDitail.scss';
+import './PostDetail.scss';
 import { Post } from './types/Post';
 
-function PostDitail():any {
+const PostDetail:React.FC = () => {
   const { postId } = useParams();
   const [post, setPost] = useState<Post| null>(null);
 
@@ -39,4 +39,4 @@ function PostDitail():any {
   );
 }
 
-export default PostDitail;
+export default PostDetail;
